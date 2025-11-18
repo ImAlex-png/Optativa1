@@ -19,24 +19,23 @@ public class Pizza {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id_pizza")
 	private int id;
-
+	
 	@Column(length = 30)
 	private String nombre;
 	
 	@Column(length = 150)
 	private String descripcion;
-	
+
 	@Column(columnDefinition = "DECIMAL(5,2)")
-	private Double precio;
-
-	@Column(columnDefinition = "BOOLEAN")
-	private Boolean disponible;
-
-	@Column(columnDefinition = "BOOLEAN")
-	private Boolean vegana;
+	private double precio;
 	
 	@Column(columnDefinition = "BOOLEAN")
-	private Boolean vegetariana;
+	private boolean disponible;
+
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean vegana;
+
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean vegetatiana;
 }

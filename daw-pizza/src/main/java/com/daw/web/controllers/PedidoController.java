@@ -14,64 +14,66 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daw.persistence.entities.Pizza;
-import com.daw.service.PizzaService;
-import com.daw.service.exception.PizzaExceptions;
-import com.daw.service.exception.PizzaNotFoundException;
+import com.daw.persistence.entities.Pedido;
+import com.daw.service.PedidoService;
+import com.daw.service.exception.PedidoException;
+import com.daw.service.exception.PedidoNotFoundException;
 
 @RestController
-@RequestMapping("/pizzas")
-public class PizzaController {
+@RequestMapping("/pedidos")
+public class PedidoController {
+
 
 	@Autowired
-	private PizzaService pizzaService;
-
+	private PedidoService pedidoService;
+	
 	@GetMapping
-	public ResponseEntity<List<Pizza>> list(){
-		return ResponseEntity.ok(this.pizzaService.findAll());
+	public ResponseEntity<List<Pedido>> list(){
+		return ResponseEntity.ok(this.pedidoService.findAll());
 	}
 	
-	@GetMapping("/{idPizza}")
-	public ResponseEntity<?> findById(@PathVariable int idPizza){
+	@GetMapping("/{idPedido}")
+	public ResponseEntity<?> findById(@PathVariable int idPedido){
 		try {
-			return ResponseEntity.ok(this.pizzaService.findById(idPizza));
+			return ResponseEntity.ok(this.pedidoService.findById(idPedido));
 		}
-		catch(PizzaNotFoundException ex) {
+		catch(PedidoNotFoundException ex) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 		}
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody Pizza pizza){
+	public ResponseEntity<?> create(@RequestBody Pedido pedido){
 //		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(this.pizzaService.create(pizza));
+			return ResponseEntity.status(HttpStatus.CREATED).body(this.pedidoService.create(pedido));
 //		}
 //		catch(PizzaException ex) {
 //			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 //		}
 	}
 	
-	@PutMapping("/{idPizza}")
-	public ResponseEntity<?> update(@PathVariable int idPizza, @RequestBody Pizza pizza){
+	@PutMapping("/{idPedido}")
+	public ResponseEntity<?> update(@PathVariable int idPedido, @RequestBody Pedido pedido){
 		try {
-			return ResponseEntity.ok(this.pizzaService.update(idPizza, pizza));
+			return ResponseEntity.ok(this.pedidoService.update(idPedido, pedido));
 		}
-		catch(PizzaNotFoundException ex) {
+		catch(PedidoNotFoundException ex) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 		}
-		catch(PizzaExceptions ex) {
+		catch(PedidoException ex) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 		}
 	}
 	
-	@DeleteMapping("/{idPizza}")
-	public ResponseEntity<?> delete(@PathVariable int idPizza){
+	@DeleteMapping("/{idPedido}")
+	public ResponseEntity<?> delete(@PathVariable int idPedido){
 		try {
-			this.pizzaService.deleteById(idPizza);
+			this.pedidoService.deleteById(idPedido);
 			return ResponseEntity.ok().build();
 		}
-		catch(PizzaNotFoundException ex) {
+		catch(PedidoNotFoundException ex) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 		}
 	}
+	
 }

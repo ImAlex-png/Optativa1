@@ -1,6 +1,7 @@
 package com.daw.persistence.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.daw.persistence.entities.enumerados.Metodo;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,21 +29,25 @@ public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cliente")
 	private int id;
 	
+	@Column(name = "id_cliente")
+	private int idCliente;
 	private LocalDateTime fecha;
 	
-	@Column(name = "DECIMAL(6, 2)")
+	@Column(columnDefinition = "DECIMAL(6,2)")
 	private double total;
-	
-	@Column(length = 200)
-	private String notas;
 	
 	@Enumerated(EnumType.STRING)
 	private Metodo metodo;
 	
+	@Column(length = 200)
+	private String notas;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id", insertable = false, updatable = false)
-	private Cliente cliente;
+	private Cliente cliente; 
+	
+	@OneToMany(mappedBy = "pedido")
+	private List<PizzaPedido> pizzaPedidos;
 }
