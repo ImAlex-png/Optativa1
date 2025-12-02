@@ -1,7 +1,7 @@
-package com.daw.services.mappers;
+package com.daw.service.mappers;
 
 import com.daw.persistence.entities.PizzaPedido;
-import com.daw.services.dto.PizzaPedidoOutputDTO;
+import com.daw.service.dto.PizzaPedidoOutputDTO;
 
 public class PizzaPedidoMapper {
 	

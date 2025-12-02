@@ -1,9 +1,9 @@
-package com.daw.services.dto;
+package com.daw.service.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.daw.persistence.entities.enums.Metodo;
+import com.daw.persistence.entities.enumerados.Metodo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

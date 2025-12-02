@@ -1,4 +1,4 @@
-package com.daw.services.dto;
+package com.daw.service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

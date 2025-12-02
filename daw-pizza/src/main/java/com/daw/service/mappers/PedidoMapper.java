@@ -1,12 +1,12 @@
-package com.daw.services.mappers;
+package com.daw.service.mappers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.daw.persistence.entities.Pedido;
 import com.daw.persistence.entities.PizzaPedido;
-import com.daw.services.dto.PedidoDTO;
-import com.daw.services.dto.PizzaPedidoOutputDTO;
+import com.daw.service.dto.PedidoDTO;
+import com.daw.service.dto.PizzaPedidoOutputDTO;
 
 public class PedidoMapper {
 	
