@@ -22,7 +22,7 @@ import com.daw.service.exception.PizzaNotFoundException;
 @RestController
 @RequestMapping("/pizzas")
 public class PizzaController {
-
+	
 	@Autowired
 	private PizzaService pizzaService;
 
@@ -74,4 +74,5 @@ public class PizzaController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 		}
 	}
+	
 }

@@ -24,7 +24,6 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id_cliente")
 	private int id;
 	
 	@Column(length = 30)
@@ -32,15 +31,15 @@ public class Cliente {
 	
 	@Column(length = 100)
 	private String direccion;
-	
+
 	@Column(length = 50)
 	private String email;
-	
+
 	@Column(length = 20)
 	private String telefono;
 	
-	// Nombre del atributo del objeto que hemos mappeado
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnore
 	private List<Pedido> pedidos;
+	
 }

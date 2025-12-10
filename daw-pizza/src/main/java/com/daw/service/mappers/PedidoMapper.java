@@ -2,6 +2,7 @@ package com.daw.service.mappers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.daw.persistence.entities.Pedido;
 import com.daw.persistence.entities.PizzaPedido;
@@ -17,6 +18,7 @@ public class PedidoMapper {
 		dto.setId(pedido.getId());
 		dto.setFecha(pedido.getFecha());
 		dto.setMetodo(pedido.getMetodo());
+		dto.setTotal(pedido.getTotal());
 		
 		//Esto viene de cliente
 		dto.setCliente(pedido.getCliente().getNombre());
@@ -38,5 +40,22 @@ public class PedidoMapper {
 		
 		return dto;
 	}
+	
+	public static List<PedidoDTO> toDTOsFuncional(List<Pedido> pedidos){
+		return pedidos.stream()
+				.map(ped -> PedidoMapper.toDTO(ped))
+				.collect(Collectors.toList());
+	}
+	
+	public static List<PedidoDTO> toDTOsDeclarativo(List<Pedido> pedidos){
+		List<PedidoDTO> dtos = new ArrayList<PedidoDTO>();
+		
+		for(Pedido p : pedidos) {
+			dtos.add(PedidoMapper.toDTO(p));
+		}
+		
+		return dtos;
+	}
 
+	
 }

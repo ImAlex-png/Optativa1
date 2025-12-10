@@ -11,7 +11,7 @@ import com.daw.service.exception.PizzaNotFoundException;
 
 @Service
 public class PizzaService {
-
+	
 	@Autowired
 	private PizzaRepository pizzaRepository;
 	
@@ -46,7 +46,7 @@ public class PizzaService {
 		pizzaBD.setVegana(pizza.isVegana());
 		pizzaBD.setVegetatiana(pizza.isVegetatiana());
 		
-		return this.pizzaRepository.save(pizza);
+		return this.pizzaRepository.save(pizzaBD);
 	}
 	
 	public void deleteById(int idPizza) {
@@ -56,4 +56,5 @@ public class PizzaService {
 		
 		this.pizzaRepository.deleteById(idPizza);
 	}
+
 }

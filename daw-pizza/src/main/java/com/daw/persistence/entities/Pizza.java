@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Pizza {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,4 +38,5 @@ public class Pizza {
 
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean vegetatiana;
+
 }

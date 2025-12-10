@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PizzaPedido {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,10 +31,10 @@ public class PizzaPedido {
 	@Column(name = "id_pedido")
 	private int idPedido;
 	
-	@Column(columnDefinition ="DECIMAL(2, 1)")
+	@Column(columnDefinition = "DECIMAL(2,1)")
 	private double cantidad;
-	
-	@Column(columnDefinition ="DECIMAL(5, 2)")
+
+	@Column(columnDefinition = "DECIMAL(5,2)")
 	private double precio;
 	
 	@ManyToOne
@@ -45,5 +45,5 @@ public class PizzaPedido {
 	@ManyToOne
 	@JoinColumn(name = "id_pizza", referencedColumnName = "id", insertable = false, updatable = false)
 	private Pizza pizza;
-	
+
 }

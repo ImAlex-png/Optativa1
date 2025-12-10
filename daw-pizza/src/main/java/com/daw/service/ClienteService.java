@@ -12,7 +12,7 @@ import com.daw.service.exception.PizzaNotFoundException;
 
 @Service
 public class ClienteService {
-
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -21,7 +21,7 @@ public class ClienteService {
 	}
 	
 	public Cliente findById(int idCliente) {
-		if(this.clienteRepository.existsById(idCliente)) {
+		if(!this.clienteRepository.existsById(idCliente)) {
 			throw new ClienteNotFoundException("El ID indicado no existe. ");
 		}
 		
@@ -51,4 +51,7 @@ public class ClienteService {
 		
 		this.clienteRepository.deleteById(idCliente);
 	}
+	
+	
+	
 }
