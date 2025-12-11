@@ -1,5 +1,6 @@
 package com.daw.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,8 @@ public class PedidoService {
 
 	public PedidoDTO create(Pedido pedido) {
 		pedido.setId(0);
+		pedido.setFecha(LocalDateTime.now());
+		pedido.setTotal(0.0);
 
 		return PedidoMapper.toDTO(this.pedidoRepository.save(pedido));
 	}
@@ -115,7 +118,7 @@ public class PedidoService {
 	}
 	
 	//Funciones auxiliares
-	public void recalcularTotal(Pedido pedido) {
+	private void recalcularTotal(Pedido pedido) {
 		double total = 0.0;
 		
 		for(PizzaPedidoOutputDTO pp : this.pizzaPedidoService.findByIdPedido(pedido.getId())) {
@@ -123,6 +126,7 @@ public class PedidoService {
 		}
 		
 		pedido.setTotal(total);
+		this.pedidoRepository.save(pedido);
 	}
 
 }
