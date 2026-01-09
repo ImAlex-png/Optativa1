@@ -11,6 +11,7 @@ import com.daw.persistence.repositories.PedidoRepository;
 import com.daw.services.dto.PedidoDTO;
 import com.daw.services.dto.PizzaPedidoInputDTO;
 import com.daw.services.dto.PizzaPedidoOutputDTO;
+import com.daw.services.exceptions.ClienteNotFoundException;
 import com.daw.services.exceptions.PedidoNotFoundException;
 import com.daw.services.mappers.PedidoMapper;
 

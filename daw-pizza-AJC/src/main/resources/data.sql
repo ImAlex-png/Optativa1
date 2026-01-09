@@ -24,6 +24,20 @@ INSERT INTO pizza (nombre, descripcion, precio, disponible, vegana, vegetariana)
 ('Carbonara', 'Bacon, cebolla, crema y mozzarella', 8.50, true, false, false),
 ('Mexicana', 'Jalapeños, carne, mozzarella, tomate', 9.00, true, false, false);
 
+-- Inserciones en la tabla oferta
+-- Pizza 1: Margarita has one active offer and one inactive
+INSERT INTO oferta (texto, activa, descuento, id_pizza) VALUES
+('2x1 Margarita', true, 50.00, 1),
+('10% Descuento Margarita', false, 10.00, 1);
+
+-- Pizza 2: Pepperoni has one active offer
+INSERT INTO oferta (texto, activa, descuento, id_pizza) VALUES
+('Pepperoni Special', true, 15.00, 2);
+
+-- Pizza 3: Cuatro Quesos has one inactive offer
+INSERT INTO oferta (texto, activa, descuento, id_pizza) VALUES
+('Cuatro Quesos Promo', false, 5.00, 3);
+
 -- Inserciones en la tabla pedido
 INSERT INTO pedido (id_cliente, fecha, total, metodo, notas) VALUES
 (1, '2025-11-01 20:15:00', 22.50, 'RECOGER', 'Sin cebolla en la pizza'),

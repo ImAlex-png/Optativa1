@@ -1,0 +1,547 @@
+{
+    "info": {
+        "_postman_id": "ofertas-ejercicios-1-2-3",
+        "name": "DAW Pizza - Ofertas (Ejercicios 1-3)",
+        "description": "Colección para probar los ejercicios 1, 2 y 3 de gestión de ofertas",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Ejercicio 1 - CRUD Ofertas",
+            "item": [
+                {
+                    "name": "1. GET - Listar todas las ofertas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Obtiene todas las ofertas del sistema. Debería mostrar las ofertas iniciales del data.sql"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "2. POST - Crear oferta para Pizza 1 (Margarita)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"texto\": \"Super Oferta Margarita - 40% OFF\",\n    \"descuento\": 40.00,\n    \"idPizza\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "IMPORTANTE: Al crear esta oferta:\n1. Se marca como activa automáticamente\n2. Las otras ofertas de Pizza 1 (ID 1 y 2) se marcan como inactivas\n\nVerifica después con GET /ofertas que solo esta nueva oferta está activa para Pizza 1"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "3. POST - Crear oferta para Pizza 4 (Barbacoa)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"texto\": \"Barbacoa Week - 25% descuento\",\n    \"descuento\": 25.00,\n    \"idPizza\": 4\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Crea una oferta para la pizza Barbacoa (que no tenía ofertas antes)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "4. PUT - Actualizar oferta ID 3",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"texto\": \"Cuatro Quesos Promo ACTUALIZADA\",\n    \"activa\": true,\n    \"descuento\": 10.00,\n    \"idPizza\": 3\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/3",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "3"
+                            ]
+                        },
+                        "description": "Actualiza la oferta ID 3 (Cuatro Quesos). Cambia el texto, activa la oferta y modifica el descuento."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "5. DELETE - Eliminar oferta ID 2",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "2"
+                            ]
+                        },
+                        "description": "Elimina la oferta ID 2 (10% Descuento Margarita). Debería devolver 200 OK."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "6. GET - Verificar lista actualizada",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Verifica que los cambios se aplicaron correctamente"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Ejercicio 2 - Activar/Desactivar Ofertas",
+            "item": [
+                {
+                    "name": "1. PUT - Activar oferta ID 1 (2x1 Margarita)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/1/activar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "1",
+                                "activar"
+                            ]
+                        },
+                        "description": "Activa la oferta ID 1 (2x1 Margarita - 50%).\n\nIMPORTANTE: Al activar esta oferta, todas las demás ofertas de Pizza 1 (Margarita) se desactivan automáticamente.\n\nVerifica con GET /ofertas que solo ID 1 está activa para Pizza 1."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "2. GET - Verificar ofertas de Pizza 1",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Verifica que solo la oferta ID 1 está activa para Pizza 1"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "3. PUT - Desactivar oferta ID 1",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/1/desactivar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "1",
+                                "desactivar"
+                            ]
+                        },
+                        "description": "Desactiva la oferta ID 1. Ahora Pizza 1 no tendrá ninguna oferta activa."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "4. PUT - Activar oferta ID 3 (Pepperoni)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/3/activar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "3",
+                                "activar"
+                            ]
+                        },
+                        "description": "Activa la oferta ID 3 (Pepperoni Special - 15%). Como es la única oferta de Pizza 2, no hay otras que desactivar."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "5. PUT - Activar oferta inexistente (Error 404)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/9999/activar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "9999",
+                                "activar"
+                            ]
+                        },
+                        "description": "Intenta activar una oferta que no existe. Debería devolver 404 NOT FOUND con mensaje de error."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Ejercicio 3 - Pizza con Ofertas Activas",
+            "item": [
+                {
+                    "name": "1. GET - Pizza 1 (Margarita) con ofertas activas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "1"
+                            ]
+                        },
+                        "description": "Obtiene la Pizza Margarita con sus ofertas activas.\n\nDebe devolver un PizzaDetailDTO que incluye:\n- Todos los campos de la pizza\n- Campo 'ofertasActivas' con array de ofertas activas\n\nSi ejecutaste los pasos anteriores y activaste la oferta ID 1, debería aparecer en ofertasActivas."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "2. GET - Pizza 2 (Pepperoni) con ofertas activas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "2"
+                            ]
+                        },
+                        "description": "Obtiene la Pizza Pepperoni.\n\nSegún data.sql inicial, tiene la oferta ID 3 (Pepperoni Special - 15%) activa.\n\nDebe aparecer en el array ofertasActivas."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "3. GET - Pizza 3 (Cuatro Quesos) sin ofertas activas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/3",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "3"
+                            ]
+                        },
+                        "description": "Obtiene la Pizza Cuatro Quesos.\n\nSegún data.sql inicial, tiene la oferta ID 4 pero está INACTIVA.\n\nEl array ofertasActivas debe estar vacío []."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "4. GET - Pizza 5 (Vegetal) sin ofertas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/5",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "5"
+                            ]
+                        },
+                        "description": "Obtiene la Pizza Vegetal que no tiene ninguna oferta asociada.\n\nEl array ofertasActivas debe estar vacío []."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "5. GET - Pizza inexistente (Error 404)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/999",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "999"
+                            ]
+                        },
+                        "description": "Intenta obtener una pizza que no existe. Debería devolver 404 NOT FOUND."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Tests Completos - Flujo Integrado",
+            "item": [
+                {
+                    "name": "PASO 1: Ver estado inicial",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Estado inicial:\n- Oferta 1: 2x1 Margarita (activa) - Pizza 1\n- Oferta 2: 10% Margarita (inactiva) - Pizza 1\n- Oferta 3: Pepperoni Special (activa) - Pizza 2\n- Oferta 4: Cuatro Quesos Promo (inactiva) - Pizza 3"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 2: Crear nueva oferta Pizza 1",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"texto\": \"Mega Oferta Margarita - 60% OFF\",\n    \"descuento\": 60.00,\n    \"idPizza\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Crea nueva oferta. Debería:\n1. Crearse con activa=true\n2. Desactivar ofertas 1 y 2 de Pizza 1"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 3: Verificar desactivación automática",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas"
+                            ]
+                        },
+                        "description": "Verifica que solo la nueva oferta (ID 5) está activa para Pizza 1"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 4: Activar oferta antigua (ID 1)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/1/activar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "1",
+                                "activar"
+                            ]
+                        },
+                        "description": "Reactiva la oferta ID 1. Debería desactivar la oferta ID 5."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 5: Ver Pizza 1 con oferta activa",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "1"
+                            ]
+                        },
+                        "description": "Debería mostrar solo la oferta ID 1 en ofertasActivas"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 6: Desactivar todas las ofertas Pizza 1",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/ofertas/1/desactivar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "ofertas",
+                                "1",
+                                "desactivar"
+                            ]
+                        },
+                        "description": "Desactiva la oferta ID 1"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PASO 7: Ver Pizza 1 sin ofertas activas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8081/pizzas/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8081",
+                            "path": [
+                                "pizzas",
+                                "1"
+                            ]
+                        },
+                        "description": "ofertasActivas debería estar vacío []"
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
