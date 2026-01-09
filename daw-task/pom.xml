@@ -12,7 +12,7 @@
 	<artifactId>daw-task</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>daw-task</name>
-	<description>Demo project for Spring Boot</description>
+	<description>API Rest para la gestión de tareas</description>
 	<url/>
 	<licenses>
 		<license/>

@@ -1,18 +1,14 @@
 package com.daw.services.exceptions;
 
-public class PokemonException extends RuntimeException{
+public class PokemonException extends RuntimeException {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4170166707151003551L;
 
-	// Se le añade el constructor
-	
 	public PokemonException(String message) {
 		super(message);
 	}
-	
-	
 
 }
